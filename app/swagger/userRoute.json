@@ -1,0 +1,132 @@
+{
+    "/users": {
+        "post": {
+            "summary": "Create a new user",
+            "description": "This endpoint allows you to create a new user.",
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "John Doe"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "john.doe@example.com"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "password123"
+                                },
+                                "active": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "role": {
+                                    "type": "string",
+                                    "enum": [
+                                        "USER",
+                                        "ADMIN"
+                                    ],
+                                    "example": "USER"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "email",
+                                "password",
+                                "active",
+                                "role"
+                            ]
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "200": {
+                    "description": "User created successfully",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "user created successfully"
+                                    },
+                                    "data": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "John Doe"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "john.doe@example.com"
+                                            },
+                                            "active": {
+                                                "type": "boolean",
+                                                "example": true
+                                            },
+                                            "role": {
+                                                "type": "string",
+                                                "example": "USER"
+                                            },
+                                            "createdAt": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2023-10-01T12:00:00Z"
+                                            },
+                                            "updatedAt": {
+                                                "type": "string",
+                                                "format": "date-time",
+                                                "example": "2023-10-01T12:00:00Z"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Bad Request",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Invalid input data"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "409": {
+                    "description": "Conflict",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Email already exists"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
